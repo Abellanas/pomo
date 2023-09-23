@@ -58,7 +58,7 @@ useEffect( () => {
                 }
             }
             
-        },10)
+        },1000)
         return () => clearInterval(timer);
 }   
 }
