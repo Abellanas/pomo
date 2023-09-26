@@ -6,7 +6,7 @@ import arcade_theme from '../../assets/sounds/arcade_theme.wav'
 import alarm from '../../assets/sounds/198841__bone666138__analog-alarm-clock.wav'
 
 
-export default function Timer({t=25, count = -1, session = 1, breakValue = 5,settingCallback}) {
+export default function Timer({t=25, count = -1, session = 4, breakValue = 5,settingCallback}) {
     const [seconds, setSeconds] = useState("00");
     const [minutes, setMinutes] = useState(t);
     const [currentSession, setCurSession] = useState(session);

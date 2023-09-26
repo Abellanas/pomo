@@ -5,22 +5,23 @@ import '../Timer/Timer'
 import Timer from '../Timer/Timer'
 import '../PopupSettings/PopupSettings'
 import PopupSettings from '../PopupSettings/PopupSettings'
+import click_sound from "../../assets/sounds/683099__florianreichelt__computer-mouse-click.mp3"
 
 
 function App() {
   const [timerTime, setTime] = useState(25)
   const [timerON, setTimer] = useState(-1);
-  const [sessions, setSession] = useState(1);
+  const [sessions, setSession] = useState(4);
   const [breakTime, setBreakTime] = useState(5);
   const [showSettings, setShowSetting] = useState([])
 
   let arrSettings = [];
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     setTimer(timerON*-1);
+    new Audio(click_sound).play()
   }
-  const handleMouseDown = (e) => {e.target.classList.add("clicked");}
-  const handleMouseUp = (e) => {e.target.classList.remove("clicked");}
+
 
 
   const changeSetting = (value, sett)=>{
@@ -60,7 +61,7 @@ function App() {
           </div>
           <div className="settingCapsule">
             <p>Intervals</p>
-            <div className="setting setting_steps" onClick={()=> handleSettingButton("Sessions: ", 1, "sessions")}>{sessions}</div>
+            <div className="setting setting_steps" onClick={()=> handleSettingButton("Sessions: ", 4, "sessions")}>{sessions}</div>
           </div>
           <div className="settingCapsule">
             <p>Break Time</p>
@@ -68,7 +69,7 @@ function App() {
           </div>
          
         </div>
-        <div className="pomo__tomato" onClick={handleClick} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}></div>
+        <div className="pomo__tomato" onClick={handleClick}></div>
         <Timer t={timerTime} count={timerON} session={sessions} breakValue={breakTime} settingCallback={changeSetting}></Timer>
       </div>
       {showSettings}
