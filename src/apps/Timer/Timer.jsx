@@ -6,11 +6,13 @@ import arcade_theme from '../../assets/sounds/arcade_theme.wav'
 import alarm from '../../assets/sounds/198841__bone666138__analog-alarm-clock.wav'
 
 
-export default function Timer({t=25, count = -1, session = 4, breakValue = 5,settingCallback}) {
+export default function Timer({t=25, count = -1, longBreakValue = 20, breakValue = 5,settingCallback}) {
     const [seconds, setSeconds] = useState("00");
     const [minutes, setMinutes] = useState(t);
-    const [currentSession, setCurSession] = useState(session);
+    const [currentSession, setCurSession] = useState(6);
     const [breakTime, setBreakTime] = useState(breakValue);
+    const [longBreakTime, setLongTime] = useState(longBreakValue);
+    const [breaking, setBreakOn] = useState(-1);
 
 
 const playSound = (sound)=>{new Audio(sound).play()}
@@ -20,9 +22,9 @@ const playSound = (sound)=>{new Audio(sound).play()}
 useEffect(()=>{
     setSeconds("00");
     setMinutes(t);  
-    setCurSession(session); 
     setBreakTime(breakValue);
-}, [t, session, breakValue])
+    setLongTime(longBreakValue);
+}, [t, breakValue, longBreakValue])
 
 
 useEffect( () => {
@@ -34,16 +36,25 @@ useEffect( () => {
                     setMinutes(minutes-1)
                 }
                 else{
+                    console.log(currentSession)
                     if(currentSession >= 1){
                         playSound(alarm);
-                        settingCallback(breakTime, "time");
-                        settingCallback(currentSession-1, "sessions");
-                    }
+                        setSeconds("00");
+                        if(breaking == -1){
+                            setMinutes(breakTime);  
+                            setBreakOn(1);
+                        }
+                        else{
+                            setMinutes(t);  
+                            setBreakOn(-1);  
+                            }
+                        setCurSession((session)=>session-1);
+                        }
                     else{
-                        clearInterval(timer)
-                        settingCallback(-1, "timeron");
-                        settingCallback(currentSession, "sessions");
                         playSound(arcade_theme);
+                        setSeconds("00");
+                        setMinutes(longBreakTime);  
+                        setCurSession(6);
                     }
 
                 }
@@ -58,7 +69,7 @@ useEffect( () => {
                 }
             }
             
-        },1000)
+        },20)
         return () => clearInterval(timer);
 }   
 }

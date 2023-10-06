@@ -11,7 +11,7 @@ import click_sound from "../../assets/sounds/683099__florianreichelt__computer-m
 function App() {
   const [timerTime, setTime] = useState(25)
   const [timerON, setTimer] = useState(-1);
-  const [sessions, setSession] = useState(4);
+  const [longBreak, setLongBreak] = useState(20);
   const [breakTime, setBreakTime] = useState(5);
   const [showSettings, setShowSetting] = useState([])
 
@@ -29,8 +29,8 @@ function App() {
       setTime(value);
       setShowSetting([]);
     }
-    if(sett == "sessions"){
-      setSession(value);
+    if(sett == "longbreak"){
+      setLongBreak(value);
       setShowSetting([]);
     }
     if(sett == "break"){
@@ -53,24 +53,25 @@ function App() {
   return (
     <>
       <div className="col__1 container__col">
-        <h1 className='title'>Best Pomo App</h1>
+        <h1 className='title'>Simple Pomo</h1>
         <div className="pomo_settings">
           <div className="settingCapsule">
-            <p>Time</p>
+            <p>Task Time</p>
           <div className="setting setting_time" onClick={()=> handleSettingButton("Time: ", 25, "time")}>{timerTime}</div>
           </div>
           <div className="settingCapsule">
-            <p>Intervals</p>
-            <div className="setting setting_steps" onClick={()=> handleSettingButton("Sessions: ", 4, "sessions")}>{sessions}</div>
-          </div>
-          <div className="settingCapsule">
-            <p>Break Time</p>
+            <p>Short Break</p>
             <div className="setting setting_rest" onClick={()=> handleSettingButton("Break: ", 5, "break")}>{breakTime}</div>
           </div>
+          <div className="settingCapsule">
+            <p>Long Break</p>
+            <div className="setting setting_steps" onClick={()=> handleSettingButton("Long Breal: ", 20, "longbreak")}>{longBreak}</div>
+          </div>
+
          
         </div>
         <div className="pomo__tomato" onClick={handleClick}></div>
-        <Timer t={timerTime} count={timerON} session={sessions} breakValue={breakTime} settingCallback={changeSetting}></Timer>
+        <Timer t={timerTime} count={timerON} longBreakValue={longBreak} breakValue={breakTime} settingCallback={changeSetting}></Timer>
       </div>
       {showSettings}
     </>
