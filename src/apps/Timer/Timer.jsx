@@ -69,7 +69,7 @@ useEffect( () => {
                 }
             }
             
-        },20)
+        },1000)
         return () => clearInterval(timer);
 }   
 }
