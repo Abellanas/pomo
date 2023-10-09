@@ -1,18 +1,20 @@
 
-
 import { useState, useEffect } from 'react'
 import './Timer.css'
 import arcade_theme from '../../assets/sounds/arcade_theme.wav'
 import alarm from '../../assets/sounds/198841__bone666138__analog-alarm-clock.wav'
+import CounterDisplay from '../CounterDisplay/CounterDisplay'
 
 
-export default function Timer({t=25, count = -1, longBreakValue = 20, breakValue = 5,settingCallback}) {
+
+export default function Timer({t=25, count = -1, longBreakValue = 20, breakValue = 5}) {
     const [seconds, setSeconds] = useState("00");
     const [minutes, setMinutes] = useState(t);
     const [currentSession, setCurSession] = useState(6);
     const [breakTime, setBreakTime] = useState(breakValue);
     const [longBreakTime, setLongTime] = useState(longBreakValue);
     const [breaking, setBreakOn] = useState(-1);
+    const [letCount, setCount] = useState(0);
 
 
 const playSound = (sound)=>{new Audio(sound).play()}
@@ -36,13 +38,13 @@ useEffect( () => {
                     setMinutes(minutes-1)
                 }
                 else{
-                    console.log(currentSession)
                     if(currentSession >= 1){
                         playSound(alarm);
                         setSeconds("00");
                         if(breaking == -1){
                             setMinutes(breakTime);  
                             setBreakOn(1);
+                            setCount((preCount)=>preCount+1)
                         }
                         else{
                             setMinutes(t);  
@@ -56,7 +58,6 @@ useEffect( () => {
                         setMinutes(longBreakTime);  
                         setCurSession(6);
                     }
-
                 }
             }
             else{
@@ -78,6 +79,7 @@ useEffect( () => {
     return(
         <>
         <div className="timerCount">{minutes}:{seconds}</div>
+        <div><CounterDisplay counterCount={letCount}></CounterDisplay></div>
         </>
     )
 }

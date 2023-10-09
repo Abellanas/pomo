@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 
+
+
 import './App.css'
 import '../Timer/Timer'
 import Timer from '../Timer/Timer'
 import '../PopupSettings/PopupSettings'
 import PopupSettings from '../PopupSettings/PopupSettings'
 import click_sound from "../../assets/sounds/683099__florianreichelt__computer-mouse-click.mp3"
+
 
 
 function App() {
@@ -71,7 +74,7 @@ function App() {
          
         </div>
         <div className="pomo__tomato" onClick={handleClick}></div>
-        <Timer t={timerTime} count={timerON} longBreakValue={longBreak} breakValue={breakTime} settingCallback={changeSetting}></Timer>
+        <Timer t={timerTime} count={timerON} longBreakValue={longBreak} breakValue={breakTime}></Timer>
       </div>
       {showSettings}
     </>

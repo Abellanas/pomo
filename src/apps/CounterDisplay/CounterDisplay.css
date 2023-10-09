@@ -1,0 +1,21 @@
+
+
+.circle {
+    background-color: rgb(58, 10, 10);
+    border-radius: 50%;
+    border: solid rgb(141, 0, 0) 0.35rem;
+
+    color: rgb(232, 227, 252);
+    font-size: 2rem;
+    font-weight: 800;   
+
+    width: 5%;
+    height: 10%;
+
+    position: absolute;
+    top: 30%;
+    left: 80%;
+
+    text-align: center;
+    line-height: 200%;
+}
