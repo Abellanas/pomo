@@ -4,7 +4,8 @@
     font-size: 5rem;
     text-align: center;
     width: 20rem;
+
     background-color: rgb(41, 12, 7);
     border-radius: 10%;
-    border: 5px solid rgb(94, 25, 13);
+    /* border: 5px solid rgb(94, 25, 13); */
 }

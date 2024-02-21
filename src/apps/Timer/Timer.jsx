@@ -10,7 +10,7 @@ import CounterDisplay from '../CounterDisplay/CounterDisplay'
 export default function Timer({t=25, count = -1, longBreakValue = 20, breakValue = 5}) {
     const [seconds, setSeconds] = useState("00");
     const [minutes, setMinutes] = useState(t);
-    const [currentSession, setCurSession] = useState(6);
+    const [currentSession, setCurSession] = useState(7);
     const [breakTime, setBreakTime] = useState(breakValue);
     const [longBreakTime, setLongTime] = useState(longBreakValue);
     const [breaking, setBreakOn] = useState(-1);
@@ -53,10 +53,11 @@ useEffect( () => {
                         setCurSession((session)=>session-1);
                         }
                     else{
+                        setBreakOn(-1)
                         playSound(arcade_theme);
                         setSeconds("00");
                         setMinutes(longBreakTime);  
-                        setCurSession(6);
+                        setCurSession(7);
                     }
                 }
             }
@@ -70,7 +71,7 @@ useEffect( () => {
                 }
             }
             
-        },1000)
+        },10)
         return () => clearInterval(timer);
 }   
 }

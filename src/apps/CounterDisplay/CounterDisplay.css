@@ -1,16 +1,17 @@
 
 
 .circle {
-    background-color: rgb(58, 10, 10);
-    border-radius: 50%;
-    border: solid rgb(141, 0, 0) 0.35rem;
+    background-color: rgb(41, 12, 7);
+    border-radius: 20%;
+    border: 5px solid rgb(68, 20, 11);
 
-    color: rgb(232, 227, 252);
-    font-size: 2rem;
+
+    color: rgb(98, 168, 145);
+    font-size: 2.5rem;
     font-weight: 800;   
 
-    width: 5%;
-    height: 10%;
+    width: 6%;
+    height: 12%;
 
     position: absolute;
     top: 30%;
